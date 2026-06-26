@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Gallery — H.E.A.R.T.S. Charitable Trust</title>
+  <link rel="icon" type="image/png" href="hearts-logo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#F7F3EE;color:#1C1C1A;font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    [data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+    [data-reveal][data-vis]{opacity:1;transform:none}
+    .na:hover{opacity:1!important;font-weight:700!important;letter-spacing:.06em!important;transform:scale(1.08);transition:all .2s ease!important}
+    .mm{display:none;position:fixed;inset:0;z-index:998;background:#FDFAF6;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+    .mm.open{display:flex}.mm a{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:#1C1C1A;}.mm a:hover{color:#C4824A}
+    .dd{position:relative;display:flex;align-items:center;}
+    .dd::after{content:'';position:absolute;top:100%;left:0;right:0;height:14px;}
+    .dd-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:210px;background:rgba(15,20,15,.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.18);padding:8px 0;z-index:200;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,transform .2s ease,visibility .2s;box-shadow:0 8px 32px rgba(0,0,0,.3);}
+    .dd:hover .dd-menu{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);}
+    .dd-menu a{display:block;padding:11px 22px;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.8);transition:all .18s;border-left:2px solid transparent;}
+    .dd-menu a:hover{color:white;border-left-color:rgba(255,255,255,.6);padding-left:28px;background:rgba(255,255,255,.08);}
+    .dd-arr{font-size:5px;margin-left:2px;display:inline-block;transition:transform .2s;opacity:.3;}
+    .dd:hover .dd-arr{transform:rotate(180deg);}
+    .koha-btn:hover{background:#A36035!important;}
+    @keyframes fU{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+    @media(max-width:900px){
+      .nl{display:none!important}.nb{display:flex!important}
+      .cw{padding-left:24px!important;padding-right:24px!important}
+      .gmc{column-count:2!important}
+      .ftc{flex-direction:column!important;gap:40px!important}
+    }
+    @media(max-width:560px){.gmc{column-count:1!important}}
+      
+    /* ===== FULL MOBILE OVERRIDES ===== */
+    @media(max-width:768px){
+      .hearts-wordmark{font-size:22px!important;letter-spacing:.05em!important;}
+      .hearts-subtitle{font-size:7px!important;}
+      
+      /* NAV */
+      .koha-btn{display:none!important;}
+      #hn-nav{padding:14px 18px!important;}
+      .hearts-logo-img{height:44px!important;}
+      .hearts-wordmark{font-size:26px!important;}
+      .hearts-subtitle{font-size:7px!important;letter-spacing:.14em!important;}
+      .nl{display:none!important;}
+      .nb{display:flex!important;}
+
+      /* MOBILE MENU */
+      .mm a{font-size:26px!important;}
+
+      /* HERO */
+      .hcp{padding:0 20px 60px!important;}
+      #ss-prev,#ss-next{display:none!important;}
+      #ss-dots{right:50%!important;transform:translateX(50%)!important;bottom:20px!important;}
+      .hero-btns{flex-direction:column!important;gap:10px!important;}
+      .hero-btns a{width:100%!important;justify-content:center!important;box-sizing:border-box!important;}
+
+      /* ALL SPLIT LAYOUTS */
+      .tc{flex-direction:column!important;}
+      .tc>div,.tc>section,.tc>a{min-height:auto!important;width:100%!important;}
+
+      /* SECTION PADDING */
+      .sp,.cw{padding-left:20px!important;padding-right:20px!important;}
+      section[style*="padding:120px"]{padding:60px 0!important;}
+      section[style*="padding:100px"]{padding:52px 0!important;}
+      section[style*="padding:80px"]{padding:48px 0!important;}
+
+      /* GAPS */
+      [style*="gap:80px"]{gap:32px!important;}
+      [style*="gap:72px"]{gap:28px!important;}
+
+      /* CONTENT PANELS that have large side padding */
+      [style*="padding:100px 80px"]{padding:40px 24px!important;}
+      [style*="padding:64px 60px"]{padding:36px 24px!important;}
+      [style*="padding:64px 64px"]{padding:36px 24px!important;}
+      [style*="padding:52px 48px"]{padding:36px 24px!important;}
+      [style*="padding:72px 64px"]{padding:36px 24px!important;}
+      [style*="padding:56px 52px"]{padding:36px 24px!important;}
+      [style*="padding:56px 56px"]{padding:36px 24px!important;}
+      [style*="padding:48px 40px"]{padding:32px 20px!important;}
+
+      /* IMAGE STRIP */
+      .isp{flex-direction:column!important;height:auto!important;}
+      .isp>div{width:100%!important;height:240px!important;flex:none!important;}
+
+      /* GRIDS */
+      .tg,.pg,.vg{grid-template-columns:1fr!important;}
+      [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+      [style*="grid-column:1/-1"]{grid-column:1!important;}
+
+      /* IMAGE MIN HEIGHTS in split layouts */
+      [style*="min-height:480px"]{min-height:260px!important;}
+      [style*="min-height:500px"]{min-height:260px!important;}
+      [style*="min-height:420px"]{min-height:240px!important;}
+      [style*="min-height:560px"]{min-height:280px!important;}
+
+      /* GALLERY */
+      .gmc{column-count:2!important;}
+
+      /* FOOTER */
+      .ftc{flex-direction:column!important;gap:32px!important;}
+      footer .ftc>div{flex:none!important;width:100%!important;}
+
+      /* VIDEO */
+      .vg{grid-template-columns:1fr!important;}
+
+      /* FORMS */
+      input,select,textarea{font-size:16px!important;} /* prevents iOS zoom */
+
+      /* QUOTE SECTION */
+      [style*="max-width:860px"]{padding:0 24px!important;}
+      [style*="max-width:960px"]{padding:0 24px!important;}
+
+      /* TESTIMONIAL FULL-WIDTH DARK CARD */
+      .tc>div[style*="flex-direction:row"]{flex-direction:column!important;}
+
+      /* HIDE large decorative numbers */
+      [style*="font-size:80px;font-weight:300;color:rgba(255,255,255"]{display:none!important;}
+
+      /* HERO HEADING */
+      .hcp h1{font-size:clamp(36px,10vw,52px)!important;line-height:1.1!important;}
+    }
+    @media(max-width:480px){
+      .gmc{column-count:1!important;}
+      .isp>div{height:200px!important;}
+      .hearts-wordmark{font-size:18px!important;}
+      .mm a{font-size:22px!important;}
+    }
+    
+    /* ===== BUTTON HOVER INTERACTIONS ===== */
+    a[style*="padding:17px"],a[style*="padding:18px"],a[style*="padding:15px"],a[style*="padding:16px"],
+    a[style*="letter-spacing:.18em"],a[style*="letter-spacing:.16em"],
+    button[style*="letter-spacing"],
+    .koha-btn,.btn-dk,.btn-ol{
+      transition:transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s ease, letter-spacing .25s ease, font-weight .25s ease !important;
+    }
+    a[style*="padding:17px"]:hover,a[style*="padding:18px"]:hover,a[style*="padding:15px"]:hover,a[style*="padding:16px"]:hover,
+    a[style*="letter-spacing:.18em"]:hover,a[style*="letter-spacing:.16em"]:hover,
+    .koha-btn:hover,.btn-dk:hover,.btn-ol:hover{
+      transform:scale(1.045) !important;
+      box-shadow:0 6px 24px rgba(0,0,0,.18) !important;
+      font-weight:600 !important;
+      letter-spacing:.22em !important;
+    }
+    /* Hero buttons specifically */
+    .hero-btns a{
+      transition:transform .25s cubic-bezier(.22,1,.36,1), background .2s ease, box-shadow .25s ease !important;
+    }
+    .hero-btns a:hover{
+      transform:scale(1.05) !important;
+      box-shadow:0 8px 28px rgba(0,0,0,.25) !important;
+      font-weight:600 !important;
+    }
+    /* Koha nav button */
+    .koha-btn{
+      transition:transform .25s cubic-bezier(.22,1,.36,1), background .2s ease, box-shadow .25s ease !important;
+    }
+    .koha-btn:hover{
+      transform:scale(1.06) !important;
+      box-shadow:0 4px 16px rgba(196,130,74,.4) !important;
+    }
+    /* Read More / text links */
+    .la:hover,.la{
+      transition:gap .25s ease, letter-spacing .25s ease !important;
+    }
+    .la:hover{
+      gap:18px !important;
+      letter-spacing:.22em !important;
+    }
+    
+    /* Centre nav links on desktop */
+    @media(min-width:901px){
+      .nl{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;}
+    }
+    /* Shielded badge */
+    #shielded-logo img{transition:opacity .2s ease;}
+    #shielded-logo:hover img{opacity:.8;}
+    </style>
+</helmet>
+
+<nav id="hn-nav" style="position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 56px 18px 20px;display:flex;align-items:center;justify-content:space-between;background:rgba(253,250,246,.97);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,.07);transition:all .4s ease;">
+  <a href="index.html" style="display:flex;flex-direction:row;align-items:center;gap:2px;">
+    <img src="hearts-logo.png" alt="" class="hearts-logo-img" style="height:62px;width:auto;flex-shrink:0;"/>
+    <div style="display:flex;flex-direction:column;gap:2px;align-items:center;padding-right:28px;">
+      <span class="hearts-wordmark" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:500;letter-spacing:.07em;color:#1C1C1A;">H.E.A.R.T.S.</span>
+      <span class="hearts-subtitle" style="font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#9B8B7B;" style="margin-left:-1px;">Charitable Trust</span>
+    </div>
+  </a>
+  <div class="nl" style="display:flex;align-items:center;gap:32px;">
+    <div class="dd"><span class="na dd-label" style="font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#C4824A;cursor:pointer;display:inline-flex;align-items:center;gap:3px;">About<span class="dd-arr">▾</span></span><div class="dd-menu"><a href="mission.html">Our Mission</a><a href="about.html">About &amp; Values</a><a href="team.html">Our Team &amp; Horses</a><a href="gallery.html" style="color:#C4824A;border-left-color:#C4824A;">Gallery</a></div></div>
+    <div class="dd"><span class="na dd-label" style="font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#7A7060;cursor:pointer;display:inline-flex;align-items:center;gap:3px;">Our Work<span class="dd-arr">▾</span></span><div class="dd-menu"><a href="services.html">Services</a><a href="programs.html">Programs</a></div></div>
+    <a href="testimonials.html" class="na" style="font-size:15px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#7A7060;transition:all .3s;">Testimonials</a>
+    <div class="dd"><span class="na dd-label" style="font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#7A7060;cursor:pointer;display:inline-flex;align-items:center;gap:3px;">Get Involved<span class="dd-arr">▾</span></span><div class="dd-menu"><a href="get-involved.html">Volunteering</a><a href="get-involved.html#research">Research</a></div></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="get-involved.html#koha" class="koha-btn" style="background:#C4824A;color:white;padding:9px 20px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:background .2s;display:inline-flex;align-items:center;">Koha ●</a>
+    <button id="hn-burger" class="nb" aria-label="Menu" style="display:none;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;padding:4px;"><span style="display:block;width:26px;height:1px;background:#1C1C1A;"></span><span style="display:block;width:18px;height:1px;background:#1C1C1A;"></span></button>
+  </div>
+</nav>
+
+<div id="hn-mm" class="mm">
+  <button id="hn-close" style="position:absolute;top:28px;right:32px;background:none;border:none;font-size:28px;color:#9B8B7B;cursor:pointer;line-height:1;">✕</button>
+  <a href="index.html">Welcome</a>
+  <a href="mission.html">Our Mission</a>
+  <a href="about.html">About &amp; Values</a>
+  <a href="team.html">Our Team &amp; Horses</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="services.html">Services</a>
+  <a href="programs.html">Programs</a>
+  <a href="testimonials.html">Testimonials</a>
+  <a href="get-involved.html">Get Involved</a>
+  <a href="get-involved.html#koha" style="background:#C4824A;color:white!important;padding:12px 36px;font-size:10px;font-weight:600;letter-spacing:.18em;font-family:'Manrope',sans-serif;text-transform:uppercase;display:inline-block;">Koha ●</a>
+</div>
+
+<!-- HEADER -->
+<section style="padding:160px 0 80px;background:#FDFAF6;text-align:center;animation:fU 1s ease both;">
+  <p style="font-size:9px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#B07845;margin-bottom:20px;">Impressions</p>
+  <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,88px);font-weight:300;color:#1C1C1A;letter-spacing:-.02em;line-height:1.05;margin-bottom:24px;">Gallery</h1>
+  <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2vw,22px);font-style:italic;color:#9B8B7B;max-width:560px;margin:0 auto 16px;line-height:1.6;">Ten years of healing, horses, and human connection — captured in moments.</p>
+  <p style="font-size:11px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:#C8B9A8;">82 photographs</p>
+</section>
+
+<div style="display:flex;align-items:center;justify-content:center;gap:20px;padding-bottom:64px;"><div style="width:60px;height:1px;background:#D9CFC3;"></div><div style="width:5px;height:5px;border-radius:50%;background:#C8B9A8;"></div><div style="width:60px;height:1px;background:#D9CFC3;"></div></div>
+
+<!-- GALLERY GRID -->
+<section style="background:#F7F3EE;padding:0 3px 3px;">
+  <div class="gmc" style="column-count:3;column-gap:3px;">
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586305834269-H9JM5WHKXG5EXUPZZ0T3/2108+Boy+%26+Olli.jpg?format=750w" alt="" loading="eager" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554259525272-SG0N5PPL0S9PCWC1F9XL/Petro+%26+Indy.jpg?format=750w" alt="" loading="eager" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586305052814-MU6R3PFIBE4U5DP8ZJKS/Jan+2012+from+2011+1327.JPG?format=750w" alt="" loading="eager" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586319809373-BC42ZJK36PEQE7VHXTZM/Cropped+one.jpg?format=750w" alt="" loading="eager" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554259013517-RX6XMLAOOGEVJNCYCGDG/20180221_163015.jpg?format=750w" alt="" loading="eager" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1558482781070-7ZNVI6HGSVAKJ3GVB3XP/IMG_20160417_151254591_HDR.jpg?format=750w" alt="" loading="eager" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1543792819244-X0D5BJV0IV8DBDA2R89L/Horse+Sense+Aug+2014-135.jpg?format=750w" alt="" loading="eager" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1543793790502-34NQT9EG1IQDFT0T108Y/IMG_20160418_150750048_HDR.jpg?format=750w" alt="" loading="eager" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586305366730-NWEFOZW31ZE482LRLY3R/20181202_104917.jpg?format=750w" alt="" loading="eager" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586305681531-8X4OZYNNPE5VVME6IJI6/20180225_112212.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553663746452-S5XTXDVRK7GEX67NHNEN/12.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553663497362-2NC0A67Z35DFBZJH6EDD/4.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553663663671-Y0OLPBOH5RSKQ3SQIJBG/10.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553662783314-UBTKOK992JC7JHROFZRN/3.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553662799043-YWAKSB4E9HMYVSZBLF8C/5.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553662804263-8KQ294KKTM45O4PFVSNU/6.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553662895571-CN2AVN4RTQHNYCK95JBU/11.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553662923414-YDMZENKHZ0TKOHJ3W6KA/14.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553662926389-UYJUGUMGHGOULVG219M5/13.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553662865367-RPJHWAIUOYMXWJ5PKCSP/9.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553663600205-8F9FOCDCUFNBECRM27P5/1.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553662944276-BIUWU7486XHGX722O7QS/15.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553662943629-75P5M5HVGEF410JWNPUV/16.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554260927341-CZ8KHW5JK7V0XUEI54LX/8.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553494140849-DIHKP5R6PNDJTV5F6IBY/16806888_10154477974005735_5387071460139531644_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553494166871-V97GPCL7XUO2KJY0YLJ4/16864698_10154408736526847_8555454789932498751_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553493905439-QO2GICC9VG1TFRJJS9R5/16938573_10206778724341713_8409273002471465405_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553494224451-4HE60XKFHSH72DTIUS6X/16938600_10206778712181409_1125584835306108566_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553493908229-ESYIUZQ2JAJ0N1CC6WBM/16939351_10154408740201847_2717182322625603988_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553493908255-HRQ4J15K4FBQ4Q7Y3WYE/16998220_10154477966340735_216332141421047323_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553493910411-ZUWMFNJZLZDDDSEV71M0/16998844_10154408746001847_716181489262960139_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553494271460-R1D4A3MQRZS9KO7CXZVP/17021762_10206778716661521_1826526566307058425_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553493912565-3LY8ZQ0F7M7VKUBAW0Y5/17021826_10206778757142533_3779426769242271233_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553493912885-ZT8437GJOY76Q1E4VR2O/17021863_10154408744221847_8100910169562769562_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553493914792-OSXEYQ19XU7U3H27CL58/17103751_10206778748302312_1870617626127976130_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586302565883-Q2O0EI0JLEPK76GPI93A/91982889_2650074098593896_3838514492656844800_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586302568028-6PMY7KUV4C44XHZ5RU7N/92096996_257950022271889_280357675328339968_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586302569149-J4C1A4XZCOROSY6UK758/92175969_223661145711538_6070935989428158464_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586302570849-RMM3B1KGSFEZ5RJ76QV1/92245135_219141739338427_7404846436635901952_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586302572529-86W4YRF0DTA25KYIKK5U/92344718_538769126657463_6484489023036325888_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586302573753-M6IYOXLJ9WAN6VVD30WH/92444117_257258568743135_6749253888316014592_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586302574147-655K385U4YZIE9WNQLSK/92459021_218575146135623_4556782377740795904_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1586302574812-AWK2QRKMONNXDFKC8L7U/92479502_644665252768329_3608535254702227456_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553497038845-3U27TX1QTYI97U6Y1F6A/2018+Horses+lying+down.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554678012463-0RP9W3CGBXB3C00PWZ83/IMG_20171017_124832.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554678006719-GRWCD8ERNI8FFZI45KXN/IMG_20171017_150059.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496440014-VA4V4T8NG66QG9PANR3R/IMG_20160418_125052528_HDR.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554262448552-SJNB7U7QYMZ4X8F2IYS4/IMG_20160417_151451936_HDR.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496384052-B7BZSZSNVB60DZTNWVGJ/IMG_20160417_121005676_HDR.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496365455-LJ4FZDAMBH5IK088ZNRU/IMG_20160417_094800579.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496472360-2NZUT4S15B2VSTD4JR6I/IMG_20160418_130306320.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496479516-U7N4JNJWWCDK63DDXT92/IMG_20160418_150750048_HDR.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496497290-XNJORD27G9O6AMTLFV92/IMG_20160418_152139557_HDR.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496952789-DFF4SDEWM2PUK9FZAY34/14713614_10154052310591847_8138602310949970260_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496941185-6XV0CZ9ZD6ZTOJWZGKGR/11220802_10154052359521847_5376210265519006829_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496940850-C7IBKA0UJ174ZO5SHG3E/14639578_10154052357486847_7570416887031464555_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496945021-NR4GLJJS2PVLWOEYOLNJ/14657306_10154052359806847_9054419659198928023_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496945608-13Y9WJM94K8DU6OD2V48/14666059_10154052346451847_180043257069797718_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496949340-5RTRRYDUY5YRPPAM7QV1/14681752_10154052362141847_4624057804912264823_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496949341-5JYURJH84U0WICU4Y5N1/14702346_10154052350196847_7944947139551829546_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496952751-5BX5H81B1QBHZ7DXO182/14708107_10154052360306847_6861973845465400147_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496955939-NATLZXVYJNZRVN0LUL14/14720379_10154052362691847_8036169605727448832_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553496957347-D8IFKV3LL9GVKX44UDPH/14729403_10154052359556847_6419939497102010064_n.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554261529406-FUO8NT52OTYP1UF6R04I/Oli%27s+head.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1548980188356-U1B22AHWTEMFDDF6I5KJ/Indi+lying+down+2018.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1548978579022-2Y8164ADKQE3YAX14BMW/20161219_125738.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1548978971648-57MPWNWRK3RA6911L0CR/Venus+2.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554261389831-ZBGSKN35PGAXQOG3SYIQ/Monique.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1553629341772-2JCDYR9A53K8ACAO23MT/Tom+lying+down+and+Lisa.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554262065160-975XODPUWEIB40O0KNYI/Olly+and+boy.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1554262188846-0VQRVZAIO07FCC6I7RTM/Juju.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/5bee6347e74940c7452998c5/1594872776003-EFVQR6QGBTMD9Z7LABMH/60921608_2502539029777313_4697896710821642240_o.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/1778716355451-DIM41V1GYVOM31ZYS11J/Renee%2Band%2BTom%2Bcropped%2Bone.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/6108d69f-be70-45ef-afd1-462352dec2f9/Abby+Indi.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/1725598796040-51VC2VH416UB7TWRJXWW/Hongi.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/1709901301387-136FH6TFO78INW4RRDA4/Boys+and+Frank.JPG?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/1658537633222-G5KL4TRJW7ZAJ76O46ED/Lisa+%26+Frank.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/1696985813441-JI5NNMI908Q8WU9QDTIG/Group+1.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/1778716441063-3OW5KB3PK8JV4RBAPXQ8/20200519_134040.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/1732844877240-TCEJ8CV67LYK0FBWS6V4/Abi+and+Olly.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/1710635488960-WQZCOVKKVHZ3LW148C4U/Best+of+Tubby+%26+Keegan.JPG?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  <div style="break-inside:avoid;margin-bottom:3px;overflow:hidden;"><img src="https://images.squarespace-cdn.com/content/v1/623820c2d1350755a59b6d22/1657613563028-GS2ACFU9XJ65NOGF27AH/2108+Boy+%26+Olli.jpg?format=750w" alt="" loading="lazy" style="width:100%;display:block;transition:transform .8s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#3D5A72;padding:80px 0 48px;">
+  <div class="cw" style="max-width:1200px;margin:0 auto;padding:0 56px;">
+    <div class="ftc" style="display:flex;gap:72px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.15);margin-bottom:40px;">
+      <div style="flex:1.5;"><h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:rgba(255,255,255,.85);margin-bottom:6px;">H.E.A.R.T.S.</h3><p style="font-size:8px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.88);margin-bottom:24px;">Charitable Trust · Aotearoa</p><p style="font-size:13px;line-height:1.82;color:rgba(255,255,255,.85);font-weight:300;max-width:300px;">CC51224 · Empowering the community through horses, using Māori customs, to enhance well-being.</p></div>
+      <div style="flex:1;"><p style="font-size:9px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:24px;">Navigation</p><ul style="list-style:none;display:flex;flex-direction:column;gap:14px;"><li><a href="index.html" style="font-size:15px;color:white;font-weight:300;">Welcome</a></li><li><a href="mission.html" style="font-size:15px;color:white;font-weight:300;">Our Mission</a></li><li><a href="services.html" style="font-size:15px;color:white;font-weight:300;">Services</a></li><li><a href="testimonials.html" style="font-size:15px;color:white;font-weight:300;">Testimonials</a></li><li><a href="get-involved.html" style="font-size:15px;color:white;font-weight:300;">Get Involved</a></li></ul></div>
+    </div>
+    <p style="font-size:13px;color:rgba(255,255,255,.75);font-weight:300;">© 2026 H.E.A.R.T.S. Charitable Trust. All rights reserved.</p>
+    <div style="display:flex;gap:20px;margin-top:8px;flex-wrap:wrap;">
+      <a href="privacy.html" style="font-size:11px;color:rgba(255,255,255,.88);font-weight:300;">Privacy Statement</a>
+      <a href="terms.html" style="font-size:11px;color:rgba(255,255,255,.88);font-weight:300;">Terms &amp; Conditions</a>
+    </div>
+  </div>
+
+  <!-- Tech Wizards credit -->
+  <div style="text-align:center;padding:14px 0 6px;border-top:1px solid rgba(255,255,255,.1);margin-top:12px;">
+    <p style="font-size:13px;color:rgba(255,255,255,.6);font-weight:300;">Website proudly made by <a href="https://techwizards.co.nz/" target="_blank" rel="noopener" style="color:rgba(255,255,255,.75);font-weight:400;text-decoration:underline;text-underline-offset:3px;transition:color .2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,.75)'">Tech Wizards</a></p>
+  </div>
+</footer>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.setAttribute('data-vis',''); io.unobserve(e.target); } });
+    }, {threshold: 0.05});
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+    const burger = document.getElementById('hn-burger');
+    const mm = document.getElementById('hn-mm');
+    if (burger && mm) {
+      const toggle = open => { mm.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : ''; };
+      burger.addEventListener('click', () => toggle(!mm.classList.contains('open')));
+      const cl = document.getElementById('hn-close');
+      if (cl) cl.addEventListener('click', () => toggle(false));
+      mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+    }
+  }
+  componentWillUnmount() { document.body.style.overflow = ''; }
+}
+</script>
+</body>
+</html>
